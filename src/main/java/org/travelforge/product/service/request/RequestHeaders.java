@@ -39,17 +39,12 @@ import java.util.Map;
  */
 public class RequestHeaders implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String LANGUAGE = "language";
     public static final String CURRENCY = "currency";
-    private static final long serialVersionUID = 1L;
+
     private Map<String, Object> parameters = new LinkedHashMap<>();
-
-    public static void main(String[] args) {
-
-        RequestHeaders headers = new RequestHeaders();
-        String currency = headers.getCurrency();
-        System.out.println(currency);
-    }
 
     @SuppressWarnings("unchecked")
     public String getLanguage() {
@@ -68,7 +63,7 @@ public class RequestHeaders implements Serializable {
 
     @JsonSetter(CURRENCY)
     public void setCurrency(String currency) {
-        parameters.put(LANGUAGE, currency);
+        parameters.put(CURRENCY, currency);
     }
 
     public Object get(String name) {
