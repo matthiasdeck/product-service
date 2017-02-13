@@ -31,8 +31,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author Matthias Deck
@@ -44,7 +44,7 @@ public class RequestHeaders implements Serializable {
     public static final String LANGUAGE = "language";
     public static final String CURRENCY = "currency";
 
-    private Map<String, Object> parameters = new LinkedHashMap<>();
+    private Map<String, Object> parameters = new TreeMap<>();
 
     @SuppressWarnings("unchecked")
     public String getLanguage() {
@@ -83,20 +83,22 @@ public class RequestHeaders implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RequestHeaders)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         RequestHeaders headers = (RequestHeaders) o;
 
-        return parameters.equals(headers.parameters);
+        return parameters != null ? parameters.equals(headers.parameters) : headers.parameters == null;
     }
 
     @Override
     public int hashCode() {
-        return parameters.hashCode();
+        return parameters != null ? parameters.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "RequestHeaders{" + "parameters=" + parameters + "}";
+        return "RequestHeaders{" +
+                "parameters=" + parameters +
+                '}';
     }
 }

@@ -82,7 +82,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PackageOfferRequest)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         PackageOfferRequest that = (PackageOfferRequest) o;
 

@@ -66,7 +66,7 @@ public class Pagination implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Pagination)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Pagination that = (Pagination) o;
 

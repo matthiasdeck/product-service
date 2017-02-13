@@ -93,7 +93,7 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PackageVariantRequest)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         PackageVariantRequest that = (PackageVariantRequest) o;
 
@@ -113,16 +113,5 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
         result = 31 * result + Arrays.hashCode(variants);
         result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "PackageVariantRequest{" +
-                "headers=" + headers +
-                ", options=" + options +
-                ", query=" + query +
-                ", variants=" + Arrays.toString(variants) +
-                ", pagination=" + pagination +
-                '}';
     }
 }

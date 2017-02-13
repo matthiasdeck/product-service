@@ -72,7 +72,7 @@ public class PackageGroupRequest implements PackageRequest {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PackageGroupRequest)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         PackageGroupRequest that = (PackageGroupRequest) o;
 

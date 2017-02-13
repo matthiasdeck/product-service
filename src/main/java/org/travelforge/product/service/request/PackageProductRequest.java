@@ -82,7 +82,7 @@ public class PackageProductRequest implements PackageRequest, Pageable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PackageProductRequest)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         PackageProductRequest that = (PackageProductRequest) o;
 
