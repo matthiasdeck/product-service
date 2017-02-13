@@ -42,6 +42,10 @@ public class RequestOptions implements Serializable {
 
     private Map<String, Object> parameters = new TreeMap<>();
 
+    public boolean has(String name) {
+        return parameters.containsKey(name);
+    }
+
     public Object get(String name) {
         return parameters.get(name);
     }
