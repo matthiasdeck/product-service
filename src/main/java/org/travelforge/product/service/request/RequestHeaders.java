@@ -44,11 +44,10 @@ public class RequestHeaders implements Serializable {
     public static final String LANGUAGE = "language";
     public static final String CURRENCY = "currency";
 
-    private Map<String, Object> parameters = new TreeMap<>();
+    private Map<String, String> parameters = new TreeMap<>();
 
-    @SuppressWarnings("unchecked")
     public String getLanguage() {
-        return (String) parameters.get(LANGUAGE);
+        return parameters.get(LANGUAGE);
     }
 
     @JsonSetter(LANGUAGE)
@@ -56,9 +55,8 @@ public class RequestHeaders implements Serializable {
         parameters.put(LANGUAGE, language);
     }
 
-    @SuppressWarnings("unchecked")
     public String getCurrency() {
-        return (String) parameters.get(CURRENCY);
+        return parameters.get(CURRENCY);
     }
 
     @JsonSetter(CURRENCY)
@@ -66,17 +64,17 @@ public class RequestHeaders implements Serializable {
         parameters.put(CURRENCY, currency);
     }
 
-    public Object get(String name) {
+    public String get(String name) {
         return parameters.get(name);
     }
 
     @JsonAnySetter
-    public void set(String name, Object value) {
+    public void set(String name, String value) {
         parameters.put(name, value);
     }
 
     @JsonValue
-    public Map<String, Object> toMap() {
+    public Map<String, String> toMap() {
         return Collections.unmodifiableMap(this.parameters);
     }
 

@@ -40,23 +40,23 @@ public class RequestOptions implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<String, Object> parameters = new TreeMap<>();
+    private Map<String, String> parameters = new TreeMap<>();
 
     public boolean has(String name) {
         return parameters.containsKey(name);
     }
 
-    public Object get(String name) {
+    public String get(String name) {
         return parameters.get(name);
     }
 
     @JsonAnySetter
-    public void set(String name, Object value) {
+    public void set(String name, String value) {
         parameters.put(name, value);
     }
 
     @JsonValue
-    public Map<String, Object> toMap() {
+    public Map<String, String> toMap() {
         return Collections.unmodifiableMap(this.parameters);
     }
 
