@@ -35,24 +35,24 @@ public class Pagination implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer page;
-    private Integer size;
+    private Integer offset;
+    private Integer limit;
     private String[] sorting;
 
-    public Integer getPage() {
-        return page;
+    public Integer getOffset() {
+        return offset;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setOffset(Integer offset) {
+        this.offset = offset;
     }
 
-    public Integer getSize() {
-        return size;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
     public String[] getSorting() {
@@ -70,16 +70,16 @@ public class Pagination implements Serializable {
 
         Pagination that = (Pagination) o;
 
-        if (page != null ? !page.equals(that.page) : that.page != null) return false;
-        if (size != null ? !size.equals(that.size) : that.size != null) return false;
+        if (offset != null ? !offset.equals(that.offset) : that.offset != null) return false;
+        if (limit != null ? !limit.equals(that.limit) : that.limit != null) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
         return Arrays.equals(sorting, that.sorting);
     }
 
     @Override
     public int hashCode() {
-        int result = page != null ? page.hashCode() : 0;
-        result = 31 * result + (size != null ? size.hashCode() : 0);
+        int result = offset != null ? offset.hashCode() : 0;
+        result = 31 * result + (limit != null ? limit.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(sorting);
         return result;
     }
@@ -87,8 +87,8 @@ public class Pagination implements Serializable {
     @Override
     public String toString() {
         return "Pagination{" +
-                "page=" + page +
-                ", size=" + size +
+                "page=" + offset +
+                ", size=" + limit +
                 ", sorting=" + Arrays.toString(sorting) +
                 '}';
     }

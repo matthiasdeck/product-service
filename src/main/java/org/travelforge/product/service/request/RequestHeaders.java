@@ -41,41 +41,23 @@ public class RequestHeaders implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String LANGUAGE = "language";
-    public static final String CURRENCY = "currency";
-
-    private Map<String, String> parameters = new TreeMap<>();
+    private String language;
+    private String currency;
 
     public String getLanguage() {
-        return parameters.get(LANGUAGE);
+        return language;
     }
 
-    @JsonSetter(LANGUAGE)
     public void setLanguage(String language) {
-        parameters.put(LANGUAGE, language);
+        this.language = language;
     }
 
     public String getCurrency() {
-        return parameters.get(CURRENCY);
+        return currency;
     }
 
-    @JsonSetter(CURRENCY)
     public void setCurrency(String currency) {
-        parameters.put(CURRENCY, currency);
-    }
-
-    public String get(String name) {
-        return parameters.get(name);
-    }
-
-    @JsonAnySetter
-    public void set(String name, String value) {
-        parameters.put(name, value);
-    }
-
-    @JsonValue
-    public Map<String, String> toMap() {
-        return Collections.unmodifiableMap(this.parameters);
+        this.currency = currency;
     }
 
     @Override
@@ -83,20 +65,24 @@ public class RequestHeaders implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RequestHeaders headers = (RequestHeaders) o;
+        RequestHeaders that = (RequestHeaders) o;
 
-        return parameters != null ? parameters.equals(headers.parameters) : headers.parameters == null;
+        if (language != null ? !language.equals(that.language) : that.language != null) return false;
+        return currency != null ? currency.equals(that.currency) : that.currency == null;
     }
 
     @Override
     public int hashCode() {
-        return parameters != null ? parameters.hashCode() : 0;
+        int result = language != null ? language.hashCode() : 0;
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "RequestHeaders{" +
-                "parameters=" + parameters +
+                "language='" + language + '\'' +
+                ", currency='" + currency + '\'' +
                 '}';
     }
 }

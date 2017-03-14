@@ -25,7 +25,7 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductQuery;
+import org.travelforge.product.search.model.PackageProductFilter;
 
 /**
  * @author Matthias Deck
@@ -36,7 +36,7 @@ public class PackageGroupRequest implements PackageRequest {
 
     private RequestHeaders headers;
     private RequestOptions options;
-    private PackageProductQuery query;
+    private PackageProductFilter filter;
 
 
     @Override
@@ -59,14 +59,12 @@ public class PackageGroupRequest implements PackageRequest {
         this.options = options;
     }
 
-    @Override
-    public PackageProductQuery getQuery() {
-        return query;
+    public PackageProductFilter getFilter() {
+        return filter;
     }
 
-    @Override
-    public void setQuery(PackageProductQuery query) {
-        this.query = query;
+    public void setFilter(PackageProductFilter filter) {
+        this.filter = filter;
     }
 
     @Override
@@ -78,14 +76,14 @@ public class PackageGroupRequest implements PackageRequest {
 
         if (headers != null ? !headers.equals(that.headers) : that.headers != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        return query != null ? query.equals(that.query) : that.query == null;
+        return filter != null ? filter.equals(that.filter) : that.filter == null;
     }
 
     @Override
     public int hashCode() {
         int result = headers != null ? headers.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (query != null ? query.hashCode() : 0);
+        result = 31 * result + (filter != null ? filter.hashCode() : 0);
         return result;
     }
 
@@ -94,7 +92,7 @@ public class PackageGroupRequest implements PackageRequest {
         return "PackageGroupRequest{" +
                 "headers=" + headers +
                 ", options=" + options +
-                ", query=" + query +
+                ", filter=" + filter +
                 '}';
     }
 }

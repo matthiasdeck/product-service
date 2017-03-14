@@ -25,7 +25,7 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductQuery;
+import org.travelforge.product.search.model.PackageProductFilter;
 
 /**
  * @author Matthias Deck
@@ -36,7 +36,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
 
     private RequestHeaders headers;
     private RequestOptions options;
-    private PackageProductQuery query;
+    private PackageProductFilter filter;
     private Pagination pagination;
 
     @Override
@@ -59,14 +59,12 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
         this.options = options;
     }
 
-    @Override
-    public PackageProductQuery getQuery() {
-        return query;
+    public PackageProductFilter getFilter() {
+        return filter;
     }
 
-    @Override
-    public void setQuery(PackageProductQuery query) {
-        this.query = query;
+    public void setFilter(PackageProductFilter filter) {
+        this.filter = filter;
     }
 
     @Override
@@ -88,7 +86,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
 
         if (headers != null ? !headers.equals(that.headers) : that.headers != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        if (query != null ? !query.equals(that.query) : that.query != null) return false;
+        if (filter != null ? !filter.equals(that.filter) : that.filter != null) return false;
         return pagination != null ? pagination.equals(that.pagination) : that.pagination == null;
     }
 
@@ -96,7 +94,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
     public int hashCode() {
         int result = headers != null ? headers.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (query != null ? query.hashCode() : 0);
+        result = 31 * result + (filter != null ? filter.hashCode() : 0);
         result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
         return result;
     }
@@ -106,7 +104,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
         return "PackageOfferRequest{" +
                 "headers=" + headers +
                 ", options=" + options +
-                ", query=" + query +
+                ", filter=" + filter +
                 ", pagination=" + pagination +
                 '}';
     }

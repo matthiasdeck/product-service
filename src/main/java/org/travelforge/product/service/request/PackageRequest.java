@@ -25,7 +25,7 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductQuery;
+import org.travelforge.product.search.model.PackageProductFilter;
 
 import java.io.Serializable;
 
@@ -38,6 +38,6 @@ public interface PackageRequest extends Serializable {
     void setHeaders(RequestHeaders headers);
     RequestOptions getOptions();
     void setOptions(RequestOptions options);
-    PackageProductQuery getQuery();
-    void setQuery(PackageProductQuery query);
+    PackageProductFilter getFilter();
+    void setFilter(PackageProductFilter filter);
 }
