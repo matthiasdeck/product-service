@@ -60,6 +60,13 @@ public class RequestOptions implements Serializable {
         return Collections.unmodifiableMap(this.parameters);
     }
 
+    public RequestOptions() {
+    }
+
+    public RequestOptions(Map<String, Object> parameters) {
+        this.parameters.putAll(parameters);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
