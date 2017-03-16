@@ -56,7 +56,7 @@ public class RequestOptions implements Serializable {
     }
 
     @JsonValue
-    public Map<String, Object> toMap() {
+    public Map<String, Object> getParameters() {
         return Collections.unmodifiableMap(this.parameters);
     }
 
