@@ -25,46 +25,32 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductFilter;
+import java.io.Serializable;
 
 /**
  * @author Matthias Deck
  */
-public class PackageGroupRequest implements PackageRequest {
+public class RequestContext implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private RequestContext context;
-    private RequestOptions options;
-    private PackageProductFilter filter;
+    private String language;
+    private String currency;
 
-
-    @Override
-    public RequestContext getContext() {
-        return context;
+    public String getLanguage() {
+        return language;
     }
 
-    @Override
-    public void setContext(RequestContext context) {
-        this.context = context;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    @Override
-    public RequestOptions getOptions() {
-        return options;
+    public String getCurrency() {
+        return currency;
     }
 
-    @Override
-    public void setOptions(RequestOptions options) {
-        this.options = options;
-    }
-
-    public PackageProductFilter getFilter() {
-        return filter;
-    }
-
-    public void setFilter(PackageProductFilter filter) {
-        this.filter = filter;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     @Override
@@ -72,27 +58,24 @@ public class PackageGroupRequest implements PackageRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PackageGroupRequest that = (PackageGroupRequest) o;
+        RequestContext that = (RequestContext) o;
 
-        if (context != null ? !context.equals(that.context) : that.context != null) return false;
-        if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        return filter != null ? filter.equals(that.filter) : that.filter == null;
+        if (language != null ? !language.equals(that.language) : that.language != null) return false;
+        return currency != null ? currency.equals(that.currency) : that.currency == null;
     }
 
     @Override
     public int hashCode() {
-        int result = context != null ? context.hashCode() : 0;
-        result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (filter != null ? filter.hashCode() : 0);
+        int result = language != null ? language.hashCode() : 0;
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "PackageGroupRequest{" +
-                "context=" + context +
-                ", options=" + options +
-                ", filter=" + filter +
+        return "RequestContext{" +
+                "language='" + language + '\'' +
+                ", currency='" + currency + '\'' +
                 '}';
     }
 }

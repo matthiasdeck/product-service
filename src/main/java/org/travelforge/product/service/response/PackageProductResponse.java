@@ -23,58 +23,47 @@
 * THE SOFTWARE.
 *
 */
-package org.travelforge.product.service.request;
+package org.travelforge.product.service.response;
 
-import org.travelforge.product.search.model.PackageProductFilter;
+import org.travelforge.product.model.PackageProduct;
+
+import java.util.List;
 
 /**
  * @author Matthias Deck
  */
-public class PackageProductRequest implements PackageRequest, Pageable {
+public class PackageProductResponse implements PackageResponse {
 
     private static final long serialVersionUID = 1L;
 
-    private RequestContext context;
-    private RequestOptions options;
-    private PackageProductFilter filter;
-    private Pagination pagination;
+    private ResponseContext context;
+    private PageInfo pageInfo;
+    private List<PackageProduct> products;
 
     @Override
-    public RequestContext getContext() {
+    public ResponseContext getContext() {
         return context;
     }
 
     @Override
-    public void setContext(RequestContext context) {
+    public void setContext(ResponseContext context) {
         this.context = context;
     }
 
-    @Override
-    public RequestOptions getOptions() {
-        return options;
+    public PageInfo getPageInfo() {
+        return pageInfo;
     }
 
-    @Override
-    public void setOptions(RequestOptions options) {
-        this.options = options;
+    public void setPageInfo(PageInfo pageInfo) {
+        this.pageInfo = pageInfo;
     }
 
-    public PackageProductFilter getFilter() {
-        return filter;
+    public List<PackageProduct> getProducts() {
+        return products;
     }
 
-    public void setFilter(PackageProductFilter filter) {
-        this.filter = filter;
-    }
-
-    @Override
-    public Pagination getPagination() {
-        return pagination;
-    }
-
-    @Override
-    public void setPagination(Pagination pagination) {
-        this.pagination = pagination;
+    public void setProducts(List<PackageProduct> products) {
+        this.products = products;
     }
 
     @Override
@@ -82,30 +71,27 @@ public class PackageProductRequest implements PackageRequest, Pageable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PackageProductRequest that = (PackageProductRequest) o;
+        PackageProductResponse that = (PackageProductResponse) o;
 
         if (context != null ? !context.equals(that.context) : that.context != null) return false;
-        if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        if (filter != null ? !filter.equals(that.filter) : that.filter != null) return false;
-        return pagination != null ? pagination.equals(that.pagination) : that.pagination == null;
+        if (pageInfo != null ? !pageInfo.equals(that.pageInfo) : that.pageInfo != null) return false;
+        return products != null ? products.equals(that.products) : that.products == null;
     }
 
     @Override
     public int hashCode() {
         int result = context != null ? context.hashCode() : 0;
-        result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (filter != null ? filter.hashCode() : 0);
-        result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
+        result = 31 * result + (pageInfo != null ? pageInfo.hashCode() : 0);
+        result = 31 * result + (products != null ? products.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "PackageProductRequest{" +
+        return "PackageProductResponse{" +
                 "context=" + context +
-                ", options=" + options +
-                ", filter=" + filter +
-                ", pagination=" + pagination +
+                ", pageInfo=" + pageInfo +
+                ", products=" + products +
                 '}';
     }
 }

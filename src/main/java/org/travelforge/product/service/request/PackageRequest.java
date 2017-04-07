@@ -34,8 +34,8 @@ import java.io.Serializable;
  */
 public interface PackageRequest extends Serializable {
 
-    RequestHeaders getHeaders();
-    void setHeaders(RequestHeaders headers);
+    RequestContext getContext();
+    void setContext(RequestContext context);
     RequestOptions getOptions();
     void setOptions(RequestOptions options);
     PackageProductFilter getFilter();

@@ -23,41 +23,43 @@
 * THE SOFTWARE.
 *
 */
-package org.travelforge.product.service.request;
-
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.JsonValue;
+package org.travelforge.product.service.response;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @author Matthias Deck
  */
-public class RequestHeaders implements Serializable {
+public class PageInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String language;
-    private String currency;
+    private Integer resultsFrom;
+    private Integer resultsPerPage;
+    private Integer resultsTotal;
 
-    public String getLanguage() {
-        return language;
+    public Integer getResultsFrom() {
+        return resultsFrom;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setResultsFrom(Integer resultsFrom) {
+        this.resultsFrom = resultsFrom;
     }
 
-    public String getCurrency() {
-        return currency;
+    public Integer getResultsPerPage() {
+        return resultsPerPage;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setResultsPerPage(Integer resultsPerPage) {
+        this.resultsPerPage = resultsPerPage;
+    }
+
+    public Integer getResultsTotal() {
+        return resultsTotal;
+    }
+
+    public void setResultsTotal(Integer resultsTotal) {
+        this.resultsTotal = resultsTotal;
     }
 
     @Override
@@ -65,24 +67,29 @@ public class RequestHeaders implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RequestHeaders that = (RequestHeaders) o;
+        PageInfo pageInfo = (PageInfo) o;
 
-        if (language != null ? !language.equals(that.language) : that.language != null) return false;
-        return currency != null ? currency.equals(that.currency) : that.currency == null;
+        if (resultsFrom != null ? !resultsFrom.equals(pageInfo.resultsFrom) : pageInfo.resultsFrom != null)
+            return false;
+        if (resultsPerPage != null ? !resultsPerPage.equals(pageInfo.resultsPerPage) : pageInfo.resultsPerPage != null)
+            return false;
+        return resultsTotal != null ? resultsTotal.equals(pageInfo.resultsTotal) : pageInfo.resultsTotal == null;
     }
 
     @Override
     public int hashCode() {
-        int result = language != null ? language.hashCode() : 0;
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        int result = resultsFrom != null ? resultsFrom.hashCode() : 0;
+        result = 31 * result + (resultsPerPage != null ? resultsPerPage.hashCode() : 0);
+        result = 31 * result + (resultsTotal != null ? resultsTotal.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "RequestHeaders{" +
-                "language='" + language + '\'' +
-                ", currency='" + currency + '\'' +
+        return "PageInfo{" +
+                "resultsFrom=" + resultsFrom +
+                ", resultsPerPage=" + resultsPerPage +
+                ", resultsTotal=" + resultsTotal +
                 '}';
     }
 }

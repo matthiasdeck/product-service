@@ -34,19 +34,19 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
 
     private static final long serialVersionUID = 1L;
 
-    private RequestHeaders headers;
+    private RequestContext context;
     private RequestOptions options;
     private PackageProductFilter filter;
     private Pagination pagination;
 
     @Override
-    public RequestHeaders getHeaders() {
-        return headers;
+    public RequestContext getContext() {
+        return context;
     }
 
     @Override
-    public void setHeaders(RequestHeaders headers) {
-        this.headers = headers;
+    public void setContext(RequestContext context) {
+        this.context = context;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
 
         PackageOfferRequest that = (PackageOfferRequest) o;
 
-        if (headers != null ? !headers.equals(that.headers) : that.headers != null) return false;
+        if (context != null ? !context.equals(that.context) : that.context != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
         if (filter != null ? !filter.equals(that.filter) : that.filter != null) return false;
         return pagination != null ? pagination.equals(that.pagination) : that.pagination == null;
@@ -92,7 +92,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
 
     @Override
     public int hashCode() {
-        int result = headers != null ? headers.hashCode() : 0;
+        int result = context != null ? context.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
         result = 31 * result + (filter != null ? filter.hashCode() : 0);
         result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
@@ -102,7 +102,7 @@ public class PackageOfferRequest implements PackageRequest, Pageable {
     @Override
     public String toString() {
         return "PackageOfferRequest{" +
-                "headers=" + headers +
+                "context=" + context +
                 ", options=" + options +
                 ", filter=" + filter +
                 ", pagination=" + pagination +

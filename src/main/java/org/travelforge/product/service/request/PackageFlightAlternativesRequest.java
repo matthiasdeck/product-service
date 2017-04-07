@@ -27,19 +27,16 @@ package org.travelforge.product.service.request;
 
 import org.travelforge.product.search.model.PackageProductFilter;
 
-import java.util.Arrays;
-
 /**
  * @author Matthias Deck
  */
-public class PackageVariantRequest implements PackageRequest, Pageable {
+public class PackageFlightAlternativesRequest implements PackageRequest, Pageable {
 
     private static final long serialVersionUID = 1L;
 
     private RequestContext context;
     private RequestOptions options;
     private PackageProductFilter filter;
-    private String[] variants;
     private Pagination pagination;
 
     @Override
@@ -70,14 +67,6 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
         this.filter = filter;
     }
 
-    public String[] getVariants() {
-        return variants;
-    }
-
-    public void setVariants(String... variants) {
-        this.variants = variants;
-    }
-
     @Override
     public Pagination getPagination() {
         return pagination;
@@ -93,13 +82,11 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PackageVariantRequest that = (PackageVariantRequest) o;
+        PackageFlightAlternativesRequest that = (PackageFlightAlternativesRequest) o;
 
         if (context != null ? !context.equals(that.context) : that.context != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
         if (filter != null ? !filter.equals(that.filter) : that.filter != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(variants, that.variants)) return false;
         return pagination != null ? pagination.equals(that.pagination) : that.pagination == null;
     }
 
@@ -108,18 +95,16 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
         int result = context != null ? context.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
         result = 31 * result + (filter != null ? filter.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(variants);
         result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "PackageVariantRequest{" +
+        return "PackageFlightAlternativesRequest{" +
                 "context=" + context +
                 ", options=" + options +
                 ", filter=" + filter +
-                ", variants=" + Arrays.toString(variants) +
                 ", pagination=" + pagination +
                 '}';
     }
