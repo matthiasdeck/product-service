@@ -25,7 +25,7 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductFilter;
+import org.travelforge.product.search.model.PackageProductRequestParameters;
 
 /**
  * @author Matthias Deck
@@ -36,7 +36,7 @@ public class PackageGroupRequest implements PackageRequest {
 
     private RequestContext context;
     private RequestOptions options;
-    private PackageProductFilter filter;
+    private PackageProductRequestParameters parameters;
 
 
     @Override
@@ -59,12 +59,12 @@ public class PackageGroupRequest implements PackageRequest {
         this.options = options;
     }
 
-    public PackageProductFilter getFilter() {
-        return filter;
+    public PackageProductRequestParameters getParameters() {
+        return parameters;
     }
 
-    public void setFilter(PackageProductFilter filter) {
-        this.filter = filter;
+    public void setParameters(PackageProductRequestParameters parameters) {
+        this.parameters = parameters;
     }
 
     @Override
@@ -76,14 +76,14 @@ public class PackageGroupRequest implements PackageRequest {
 
         if (context != null ? !context.equals(that.context) : that.context != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        return filter != null ? filter.equals(that.filter) : that.filter == null;
+        return parameters != null ? parameters.equals(that.parameters) : that.parameters == null;
     }
 
     @Override
     public int hashCode() {
         int result = context != null ? context.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (filter != null ? filter.hashCode() : 0);
+        result = 31 * result + (parameters != null ? parameters.hashCode() : 0);
         return result;
     }
 
@@ -92,7 +92,7 @@ public class PackageGroupRequest implements PackageRequest {
         return "PackageGroupRequest{" +
                 "context=" + context +
                 ", options=" + options +
-                ", filter=" + filter +
+                ", parameters=" + parameters +
                 '}';
     }
 }

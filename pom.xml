@@ -4,7 +4,7 @@
 
     <groupId>org.travelforge</groupId>
     <artifactId>product-service</artifactId>
-    <version>0.9-SNAPSHOT</version>
+    <version>0.10-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Travelforge Product Service</name>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.travelforge</groupId>
             <artifactId>product-search-model</artifactId>
-            <version>0.9-SNAPSHOT</version>
+            <version>0.10-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

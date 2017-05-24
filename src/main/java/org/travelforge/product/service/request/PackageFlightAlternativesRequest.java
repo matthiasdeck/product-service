@@ -25,7 +25,7 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductFilter;
+import org.travelforge.product.search.model.PackageProductRequestParameters;
 
 /**
  * @author Matthias Deck
@@ -36,7 +36,7 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
 
     private RequestContext context;
     private RequestOptions options;
-    private PackageProductFilter filter;
+    private PackageProductRequestParameters parameters;
     private Pagination pagination;
 
     @Override
@@ -59,12 +59,12 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
         this.options = options;
     }
 
-    public PackageProductFilter getFilter() {
-        return filter;
+    public PackageProductRequestParameters getParameters() {
+        return parameters;
     }
 
-    public void setFilter(PackageProductFilter filter) {
-        this.filter = filter;
+    public void setParameters(PackageProductRequestParameters parameters) {
+        this.parameters = parameters;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
 
         if (context != null ? !context.equals(that.context) : that.context != null) return false;
         if (options != null ? !options.equals(that.options) : that.options != null) return false;
-        if (filter != null ? !filter.equals(that.filter) : that.filter != null) return false;
+        if (parameters != null ? !parameters.equals(that.parameters) : that.parameters != null) return false;
         return pagination != null ? pagination.equals(that.pagination) : that.pagination == null;
     }
 
@@ -94,7 +94,7 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
     public int hashCode() {
         int result = context != null ? context.hashCode() : 0;
         result = 31 * result + (options != null ? options.hashCode() : 0);
-        result = 31 * result + (filter != null ? filter.hashCode() : 0);
+        result = 31 * result + (parameters != null ? parameters.hashCode() : 0);
         result = 31 * result + (pagination != null ? pagination.hashCode() : 0);
         return result;
     }
@@ -104,7 +104,7 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
         return "PackageFlightAlternativesRequest{" +
                 "context=" + context +
                 ", options=" + options +
-                ", filter=" + filter +
+                ", parameters=" + parameters +
                 ", pagination=" + pagination +
                 '}';
     }
