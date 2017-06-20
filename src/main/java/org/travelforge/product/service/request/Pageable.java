@@ -31,5 +31,6 @@ package org.travelforge.product.service.request;
 public interface Pageable {
 
     Pagination getPagination();
+
     void setPagination(Pagination pagination);
 }

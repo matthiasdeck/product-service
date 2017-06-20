@@ -34,8 +34,26 @@ public class RequestContext implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String client;
+    private String market;
     private String language;
     private String currency;
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
 
     public String getLanguage() {
         return language;
@@ -60,13 +78,17 @@ public class RequestContext implements Serializable {
 
         RequestContext that = (RequestContext) o;
 
+        if (client != null ? !client.equals(that.client) : that.client != null) return false;
+        if (market != null ? !market.equals(that.market) : that.market != null) return false;
         if (language != null ? !language.equals(that.language) : that.language != null) return false;
         return currency != null ? currency.equals(that.currency) : that.currency == null;
     }
 
     @Override
     public int hashCode() {
-        int result = language != null ? language.hashCode() : 0;
+        int result = client != null ? client.hashCode() : 0;
+        result = 31 * result + (market != null ? market.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (currency != null ? currency.hashCode() : 0);
         return result;
     }
@@ -74,7 +96,9 @@ public class RequestContext implements Serializable {
     @Override
     public String toString() {
         return "RequestContext{" +
-                "language='" + language + '\'' +
+                "client='" + client + '\'' +
+                ", market='" + market + '\'' +
+                ", language='" + language + '\'' +
                 ", currency='" + currency + '\'' +
                 '}';
     }

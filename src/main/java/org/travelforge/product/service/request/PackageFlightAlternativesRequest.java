@@ -25,8 +25,6 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductRequestParameters;
-
 /**
  * @author Matthias Deck
  */
@@ -36,7 +34,7 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
 
     private RequestContext context;
     private RequestOptions options;
-    private PackageProductRequestParameters parameters;
+    private RequestParameters parameters;
     private Pagination pagination;
 
     @Override
@@ -59,11 +57,11 @@ public class PackageFlightAlternativesRequest implements PackageRequest, Pageabl
         this.options = options;
     }
 
-    public PackageProductRequestParameters getParameters() {
+    public RequestParameters getParameters() {
         return parameters;
     }
 
-    public void setParameters(PackageProductRequestParameters parameters) {
+    public void setParameters(RequestParameters parameters) {
         this.parameters = parameters;
     }
 

@@ -23,17 +23,24 @@
 * THE SOFTWARE.
 *
 */
-package org.travelforge.product.service.response;
+package org.travelforge.product.service;
 
-import java.io.Serializable;
+import org.travelforge.product.service.request.*;
+import org.travelforge.product.service.response.PackageGroupResponse;
+import org.travelforge.product.service.response.PackageProductResponse;
 
 /**
  * @author Matthias Deck
  */
-public interface PackageResponse extends Serializable {
+public interface PackageProductServiceConnector {
 
-    ResponseContext getContext();
+    PackageGroupResponse executePackageGroupRequest(PackageGroupRequest request) throws ProductServiceException;
 
-    void setContext(ResponseContext context);
+    PackageProductResponse executePackageProductRequest(PackageProductRequest request) throws ProductServiceException;
 
+    PackageProductResponse executePackageOfferRequest(PackageOfferRequest request) throws ProductServiceException;
+
+    PackageProductResponse executePackageVariantRequest(PackageVariantRequest request) throws ProductServiceException;
+
+    PackageProductResponse executePackageFlightAlternativesRequest(PackageFlightAlternativesRequest request) throws ProductServiceException;
 }

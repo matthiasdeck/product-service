@@ -34,8 +34,26 @@ public class ResponseContext implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String client;
+    private String market;
     private String language;
     private String currency;
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
 
     public String getLanguage() {
         return language;
@@ -58,15 +76,19 @@ public class ResponseContext implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ResponseContext that = (ResponseContext) o;
+        ResponseContext context = (ResponseContext) o;
 
-        if (language != null ? !language.equals(that.language) : that.language != null) return false;
-        return currency != null ? currency.equals(that.currency) : that.currency == null;
+        if (client != null ? !client.equals(context.client) : context.client != null) return false;
+        if (market != null ? !market.equals(context.market) : context.market != null) return false;
+        if (language != null ? !language.equals(context.language) : context.language != null) return false;
+        return currency != null ? currency.equals(context.currency) : context.currency == null;
     }
 
     @Override
     public int hashCode() {
-        int result = language != null ? language.hashCode() : 0;
+        int result = client != null ? client.hashCode() : 0;
+        result = 31 * result + (market != null ? market.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (currency != null ? currency.hashCode() : 0);
         return result;
     }
@@ -74,7 +96,9 @@ public class ResponseContext implements Serializable {
     @Override
     public String toString() {
         return "ResponseContext{" +
-                "language='" + language + '\'' +
+                "client='" + client + '\'' +
+                ", market='" + market + '\'' +
+                ", language='" + language + '\'' +
                 ", currency='" + currency + '\'' +
                 '}';
     }

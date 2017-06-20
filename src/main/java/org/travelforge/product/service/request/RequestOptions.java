@@ -26,9 +26,11 @@
 package org.travelforge.product.service.request;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
@@ -36,35 +38,42 @@ import java.util.TreeMap;
 /**
  * @author Matthias Deck
  */
+@JsonInclude(JsonInclude.Include.ALWAYS)
 public class RequestOptions implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<String, Object> parameters = new TreeMap<>();
-
-    public boolean has(String name) {
-        return parameters.containsKey(name);
-    }
+    private Map<String, Object> options = new TreeMap<>();
 
     public Object get(String name) {
-        return parameters.get(name);
+        return options.get(name);
     }
 
     @JsonAnySetter
     public void set(String name, Object value) {
-        parameters.put(name, value);
+        options.put(name, value);
     }
 
     @JsonValue
-    public Map<String, Object> getParameters() {
-        return Collections.unmodifiableMap(this.parameters);
+    public Map<String, Object> getOptions() {
+        return Collections.unmodifiableMap(options);
     }
 
-    public RequestOptions() {
-    }
+    public RequestOptions merge(RequestOptions other) {
 
-    public RequestOptions(Map<String, Object> parameters) {
-        this.parameters.putAll(parameters);
+        RequestOptions merged = new RequestOptions();
+
+        for (Map<String, Object> options : Arrays.asList(this.options, other.options)) {
+            for (Map.Entry<String, Object> entry : options.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                if (value != null) {
+                    merged.options.put(key, value);
+                }
+            }
+        }
+
+        return merged;
     }
 
     @Override
@@ -72,20 +81,20 @@ public class RequestOptions implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RequestOptions options = (RequestOptions) o;
+        RequestOptions that = (RequestOptions) o;
 
-        return parameters != null ? parameters.equals(options.parameters) : options.parameters == null;
+        return options != null ? options.equals(that.options) : that.options == null;
     }
 
     @Override
     public int hashCode() {
-        return parameters != null ? parameters.hashCode() : 0;
+        return options != null ? options.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "RequestOptions{" +
-                "parameters=" + parameters +
+                "options=" + options +
                 '}';
     }
 }

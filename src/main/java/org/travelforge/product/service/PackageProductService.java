@@ -34,9 +34,44 @@ import org.travelforge.product.service.response.PackageProductResponse;
  */
 public interface PackageProductService {
 
+    static PackageProductService newInstance(PackageProductServiceConnector connector) {
+
+        return new PackageProductService() {
+
+            @Override
+            public PackageGroupResponse getPackageGroups(PackageGroupRequest request) throws ProductServiceException {
+                return connector.executePackageGroupRequest(request);
+            }
+
+            @Override
+            public PackageProductResponse getPackageProducts(PackageProductRequest request) throws ProductServiceException {
+                return connector.executePackageProductRequest(request);
+            }
+
+            @Override
+            public PackageProductResponse getPackageOffers(PackageOfferRequest request) throws ProductServiceException {
+                return connector.executePackageOfferRequest(request);
+            }
+
+            @Override
+            public PackageProductResponse getPackageVariants(PackageVariantRequest request) throws ProductServiceException {
+                return connector.executePackageVariantRequest(request);
+            }
+
+            @Override
+            public PackageProductResponse getPackageFlightAlternatives(PackageFlightAlternativesRequest request) throws ProductServiceException {
+                return connector.executePackageFlightAlternativesRequest(request);
+            }
+        };
+    }
+
     PackageGroupResponse getPackageGroups(PackageGroupRequest request) throws ProductServiceException;
+
     PackageProductResponse getPackageProducts(PackageProductRequest request) throws ProductServiceException;
+
     PackageProductResponse getPackageOffers(PackageOfferRequest request) throws ProductServiceException;
+
     PackageProductResponse getPackageVariants(PackageVariantRequest request) throws ProductServiceException;
+
     PackageProductResponse getPackageFlightAlternatives(PackageFlightAlternativesRequest request) throws ProductServiceException;
 }

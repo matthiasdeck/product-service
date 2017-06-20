@@ -25,8 +25,6 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductRequestParameters;
-
 import java.util.Arrays;
 
 /**
@@ -38,7 +36,7 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
 
     private RequestContext context;
     private RequestOptions options;
-    private PackageProductRequestParameters parameters;
+    private RequestParameters parameters;
     private String[] variants;
     private Pagination pagination;
 
@@ -62,11 +60,11 @@ public class PackageVariantRequest implements PackageRequest, Pageable {
         this.options = options;
     }
 
-    public PackageProductRequestParameters getParameters() {
+    public RequestParameters getParameters() {
         return parameters;
     }
 
-    public void setParameters(PackageProductRequestParameters parameters) {
+    public void setParameters(RequestParameters parameters) {
         this.parameters = parameters;
     }
 

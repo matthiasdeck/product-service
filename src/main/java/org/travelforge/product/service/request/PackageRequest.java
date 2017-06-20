@@ -25,8 +25,6 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductRequestParameters;
-
 import java.io.Serializable;
 
 /**
@@ -35,9 +33,14 @@ import java.io.Serializable;
 public interface PackageRequest extends Serializable {
 
     RequestContext getContext();
+
     void setContext(RequestContext context);
+
     RequestOptions getOptions();
+
     void setOptions(RequestOptions options);
-    PackageProductRequestParameters getParameters();
-    void setParameters(PackageProductRequestParameters parameters);
+
+    RequestParameters getParameters();
+
+    void setParameters(RequestParameters parameters);
 }

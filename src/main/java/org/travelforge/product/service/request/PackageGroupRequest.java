@@ -25,8 +25,6 @@
 */
 package org.travelforge.product.service.request;
 
-import org.travelforge.product.search.model.PackageProductRequestParameters;
-
 /**
  * @author Matthias Deck
  */
@@ -36,8 +34,7 @@ public class PackageGroupRequest implements PackageRequest {
 
     private RequestContext context;
     private RequestOptions options;
-    private PackageProductRequestParameters parameters;
-
+    private RequestParameters parameters;
 
     @Override
     public RequestContext getContext() {
@@ -59,11 +56,11 @@ public class PackageGroupRequest implements PackageRequest {
         this.options = options;
     }
 
-    public PackageProductRequestParameters getParameters() {
+    public RequestParameters getParameters() {
         return parameters;
     }
 
-    public void setParameters(PackageProductRequestParameters parameters) {
+    public void setParameters(RequestParameters parameters) {
         this.parameters = parameters;
     }
 
