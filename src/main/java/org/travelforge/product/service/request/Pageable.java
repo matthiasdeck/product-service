@@ -28,6 +28,7 @@ package org.travelforge.product.service.request;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public interface Pageable {
 
     Pagination getPagination();

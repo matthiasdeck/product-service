@@ -30,45 +30,40 @@ import java.io.Serializable;
 /**
  * @author Matthias Deck
  */
-public class ResponseContext implements Serializable {
+public final class ResponseContext implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String client;
-    private String market;
-    private String language;
-    private String currency;
+    private final String client;
+    private final String market;
+    private final String language;
+    private final String currency;
 
-    public String getClient() {
-        return client;
+    private ResponseContext(String client, String market, String language, String currency) {
+        this.client = client;
+        this.market = market;
+        this.language = language;
+        this.currency = currency;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public String getClient() {
+        return this.client;
     }
 
     public String getMarket() {
-        return market;
-    }
-
-    public void setMarket(String market) {
-        this.market = market;
+        return this.market;
     }
 
     public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
+        return this.language;
     }
 
     public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
+        return this.currency;
     }
 
     @Override
@@ -101,5 +96,40 @@ public class ResponseContext implements Serializable {
                 ", language='" + language + '\'' +
                 ", currency='" + currency + '\'' +
                 '}';
+    }
+
+    public static final class Builder {
+
+        private String client;
+        private String market;
+        private String language;
+        private String currency;
+
+        private Builder() {
+        }
+
+        public ResponseContext.Builder client(String client) {
+            this.client = client;
+            return this;
+        }
+
+        public ResponseContext.Builder market(String market) {
+            this.market = market;
+            return this;
+        }
+
+        public ResponseContext.Builder language(String language) {
+            this.language = language;
+            return this;
+        }
+
+        public ResponseContext.Builder currency(String currency) {
+            this.currency = currency;
+            return this;
+        }
+
+        public ResponseContext build() {
+            return new ResponseContext(client, market, language, currency);
+        }
     }
 }

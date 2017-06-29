@@ -31,6 +31,7 @@ import java.util.Arrays;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public class Pagination implements Serializable {
 
     private static final long serialVersionUID = 1L;

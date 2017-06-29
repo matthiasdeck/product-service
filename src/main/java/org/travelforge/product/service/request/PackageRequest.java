@@ -30,6 +30,7 @@ import java.io.Serializable;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public interface PackageRequest extends Serializable {
 
     RequestContext getContext();

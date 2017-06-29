@@ -30,6 +30,7 @@ import java.io.Serializable;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public class RequestContext implements Serializable {
 
     private static final long serialVersionUID = 1L;

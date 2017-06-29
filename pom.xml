@@ -4,7 +4,7 @@
 
     <groupId>org.travelforge</groupId>
     <artifactId>product-service</artifactId>
-    <version>0.20-SNAPSHOT</version>
+    <version>0.30-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Travelforge Product Service</name>
@@ -64,14 +64,21 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.travelforge</groupId>
-            <artifactId>product-model</artifactId>
-            <version>0.20-SNAPSHOT</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.travelforge</groupId>
+            <artifactId>product-model</artifactId>
+            <version>0.30-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

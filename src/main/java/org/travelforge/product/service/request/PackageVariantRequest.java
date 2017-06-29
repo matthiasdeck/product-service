@@ -30,6 +30,7 @@ import java.util.Arrays;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public class PackageVariantRequest implements PackageRequest, Pageable {
 
     private static final long serialVersionUID = 1L;

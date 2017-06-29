@@ -27,60 +27,55 @@ package org.travelforge.product.service.response;
 
 import org.travelforge.product.model.PackageProduct;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * @author Matthias Deck
  */
-public class PackageProductResponse implements PackageResponse {
+public final class PackageProductResponse extends PackageResponse {
 
     private static final long serialVersionUID = 1L;
 
-    private ResponseContext context;
-    private PageInfo pageInfo;
-    private List<PackageProduct> products;
+    private final PageInfo pageInfo;
+    private final List<PackageProduct> products;
 
-    @Override
-    public ResponseContext getContext() {
-        return context;
+    private PackageProductResponse(ResponseContext context, PageInfo pageInfo, List<PackageProduct> products) {
+        super(context);
+        this.pageInfo = pageInfo;
+        this.products = products;
     }
 
-    @Override
-    public void setContext(ResponseContext context) {
-        this.context = context;
+    public static Builder builder() {
+        return new Builder();
     }
 
     public PageInfo getPageInfo() {
-        return pageInfo;
-    }
-
-    public void setPageInfo(PageInfo pageInfo) {
-        this.pageInfo = pageInfo;
+        return this.pageInfo;
     }
 
     public List<PackageProduct> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<PackageProduct> products) {
-        this.products = products;
+        return this.products;
     }
 
     @Override
     public boolean equals(Object o) {
+        // TODO: check if equals works
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
-        PackageProductResponse that = (PackageProductResponse) o;
+        PackageProductResponse response = (PackageProductResponse) o;
 
-        if (context != null ? !context.equals(that.context) : that.context != null) return false;
-        if (pageInfo != null ? !pageInfo.equals(that.pageInfo) : that.pageInfo != null) return false;
-        return products != null ? products.equals(that.products) : that.products == null;
+        if (pageInfo != null ? !pageInfo.equals(response.pageInfo) : response.pageInfo != null) return false;
+        return products != null ? products.equals(response.products) : response.products == null;
     }
 
     @Override
     public int hashCode() {
-        int result = context != null ? context.hashCode() : 0;
+        // TODO: check if hashcode works
+        int result = super.hashCode();
         result = 31 * result + (pageInfo != null ? pageInfo.hashCode() : 0);
         result = 31 * result + (products != null ? products.hashCode() : 0);
         return result;
@@ -88,10 +83,61 @@ public class PackageProductResponse implements PackageResponse {
 
     @Override
     public String toString() {
+        // TODO: beautify toString output
         return "PackageProductResponse{" +
-                "context=" + context +
-                ", pageInfo=" + pageInfo +
+                "pageInfo=" + pageInfo +
                 ", products=" + products +
-                '}';
+                "} " + super.toString();
+    }
+
+    public static final class Builder extends PackageResponse.Builder<PackageProductResponse> {
+
+        private ResponseContext context;
+        private PageInfo pageInfo;
+        private List<PackageProduct> products;
+
+        private Builder() {
+            super();
+        }
+
+        public Builder context(ResponseContext context) {
+            this.context = context;
+            return this;
+        }
+
+        public Builder pageInfo(PageInfo pageInfo) {
+            this.pageInfo = pageInfo;
+            return this;
+        }
+
+        public Builder product(PackageProduct product) {
+            if (this.products == null) {
+                this.products = new ArrayList<>();
+            }
+            this.products.add(product);
+            return this;
+        }
+
+        public Builder products(List<PackageProduct> products) {
+            if (this.products == null) {
+                this.products = new ArrayList<>();
+            }
+            this.products.addAll(products);
+            return this;
+        }
+
+        public Builder clearProducts() {
+            if (this.products != null)
+                this.products.clear();
+            return this;
+        }
+
+        public PackageProductResponse build() {
+            List<PackageProduct> products = null;
+            if (this.products != null && !this.products.isEmpty()) {
+                products = Collections.unmodifiableList(new ArrayList<>(this.products));
+            }
+            return new PackageProductResponse(context, pageInfo, products);
+        }
     }
 }

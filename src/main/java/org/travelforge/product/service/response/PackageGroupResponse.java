@@ -27,59 +27,102 @@ package org.travelforge.product.service.response;
 
 import org.travelforge.product.model.PackageProductGroup;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * @author Matthias Deck
  */
-public class PackageGroupResponse implements PackageResponse {
+public final class PackageGroupResponse extends PackageResponse {
 
     private static final long serialVersionUID = 1L;
 
-    private ResponseContext context;
-    private List<PackageProductGroup> productGroups;
+    private final List<PackageProductGroup> productGroups;
 
-    @Override
-    public ResponseContext getContext() {
-        return context;
+    private PackageGroupResponse(ResponseContext context, List<PackageProductGroup> productGroups) {
+        super(context);
+        this.productGroups = productGroups;
     }
 
-    @Override
-    public void setContext(ResponseContext context) {
-        this.context = context;
+    public static Builder builder() {
+        return new Builder();
     }
 
     public List<PackageProductGroup> getProductGroups() {
-        return productGroups;
-    }
-
-    public void setProductGroups(List<PackageProductGroup> productGroups) {
-        this.productGroups = productGroups;
+        return this.productGroups;
     }
 
     @Override
     public boolean equals(Object o) {
+        // TODO: check if equals works
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
-        PackageGroupResponse that = (PackageGroupResponse) o;
+        PackageGroupResponse response = (PackageGroupResponse) o;
 
-        if (context != null ? !context.equals(that.context) : that.context != null) return false;
-        return productGroups != null ? productGroups.equals(that.productGroups) : that.productGroups == null;
+        return productGroups != null ? productGroups.equals(response.productGroups) : response.productGroups == null;
     }
 
     @Override
     public int hashCode() {
-        int result = context != null ? context.hashCode() : 0;
+        // TODO: check if hashcode works
+        int result = super.hashCode();
         result = 31 * result + (productGroups != null ? productGroups.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
+        // TODO: beautify toString output
         return "PackageGroupResponse{" +
-                "context=" + context +
-                ", productGroups=" + productGroups +
-                '}';
+                "productGroups=" + productGroups +
+                "} " + super.toString();
+    }
+
+    public static final class Builder extends PackageResponse.Builder<PackageGroupResponse> {
+
+        private ResponseContext context;
+        private List<PackageProductGroup> productGroups;
+
+        private Builder() {
+            super();
+        }
+
+        public Builder context(ResponseContext context) {
+            this.context = context;
+            return this;
+        }
+
+        public Builder productGroup(PackageProductGroup productGroup) {
+            if (this.productGroups == null) {
+                this.productGroups = new ArrayList<>();
+            }
+            this.productGroups.add(productGroup);
+            return this;
+        }
+
+        public Builder productGroups(List<PackageProductGroup> productGroups) {
+            if (this.productGroups == null) {
+                this.productGroups = new ArrayList<>();
+            }
+            this.productGroups.addAll(productGroups);
+            return this;
+        }
+
+        public Builder clearProductGroups() {
+            if (this.productGroups != null)
+                this.productGroups.clear();
+            return this;
+        }
+
+        public PackageGroupResponse build() {
+            List<PackageProductGroup> productGroups = null;
+            if (this.productGroups != null && !this.productGroups.isEmpty()) {
+                productGroups = Collections.unmodifiableList(new ArrayList<>(this.productGroups));
+            }
+            return new PackageGroupResponse(context, productGroups);
+        }
     }
 }

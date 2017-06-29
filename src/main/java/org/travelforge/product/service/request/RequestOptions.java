@@ -38,6 +38,7 @@ import java.util.TreeMap;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 @JsonInclude(JsonInclude.Include.ALWAYS)
 public class RequestOptions implements Serializable {
 

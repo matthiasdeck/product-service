@@ -40,6 +40,7 @@ import static org.travelforge.product.service.request.RequestParameters.Paramete
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 @JsonInclude(JsonInclude.Include.ALWAYS)
 public class RequestParameters implements Serializable {
 

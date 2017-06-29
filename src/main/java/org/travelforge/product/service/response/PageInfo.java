@@ -30,36 +30,34 @@ import java.io.Serializable;
 /**
  * @author Matthias Deck
  */
-public class PageInfo implements Serializable {
+public final class PageInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer resultsFrom;
-    private Integer resultsPerPage;
-    private Integer resultsTotal;
+    private final Integer resultsFrom;
+    private final Integer resultsPerPage;
+    private final Integer resultsTotal;
 
-    public Integer getResultsFrom() {
-        return resultsFrom;
+    private PageInfo(Integer resultsFrom, Integer resultsPerPage, Integer resultsTotal) {
+        this.resultsFrom = resultsFrom;
+        this.resultsPerPage = resultsPerPage;
+        this.resultsTotal = resultsTotal;
     }
 
-    public void setResultsFrom(Integer resultsFrom) {
-        this.resultsFrom = resultsFrom;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public Integer getResultsFrom() {
+        return this.resultsFrom;
     }
 
     public Integer getResultsPerPage() {
-        return resultsPerPage;
-    }
-
-    public void setResultsPerPage(Integer resultsPerPage) {
-        this.resultsPerPage = resultsPerPage;
+        return this.resultsPerPage;
     }
 
     public Integer getResultsTotal() {
-        return resultsTotal;
-    }
-
-    public void setResultsTotal(Integer resultsTotal) {
-        this.resultsTotal = resultsTotal;
+        return this.resultsTotal;
     }
 
     @Override
@@ -91,5 +89,34 @@ public class PageInfo implements Serializable {
                 ", resultsPerPage=" + resultsPerPage +
                 ", resultsTotal=" + resultsTotal +
                 '}';
+    }
+
+    public static final class Builder {
+
+        private Integer resultsFrom;
+        private Integer resultsPerPage;
+        private Integer resultsTotal;
+
+        private Builder() {
+        }
+
+        public PageInfo.Builder resultsFrom(Integer resultsFrom) {
+            this.resultsFrom = resultsFrom;
+            return this;
+        }
+
+        public PageInfo.Builder resultsPerPage(Integer resultsPerPage) {
+            this.resultsPerPage = resultsPerPage;
+            return this;
+        }
+
+        public PageInfo.Builder resultsTotal(Integer resultsTotal) {
+            this.resultsTotal = resultsTotal;
+            return this;
+        }
+
+        public PageInfo build() {
+            return new PageInfo(resultsFrom, resultsPerPage, resultsTotal);
+        }
     }
 }

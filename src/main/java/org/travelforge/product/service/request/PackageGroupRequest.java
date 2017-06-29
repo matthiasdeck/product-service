@@ -28,6 +28,7 @@ package org.travelforge.product.service.request;
 /**
  * @author Matthias Deck
  */
+// TODO: refactor class; add builder, ...
 public class PackageGroupRequest implements PackageRequest {
 
     private static final long serialVersionUID = 1L;

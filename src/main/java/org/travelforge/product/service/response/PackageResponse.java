@@ -30,10 +30,54 @@ import java.io.Serializable;
 /**
  * @author Matthias Deck
  */
-public interface PackageResponse extends Serializable {
+public abstract class PackageResponse implements Serializable {
 
-    ResponseContext getContext();
+    private static final long serialVersionUID = 1L;
 
-    void setContext(ResponseContext context);
+    private final ResponseContext context;
 
+    PackageResponse(ResponseContext context) {
+        this.context = context;
+    }
+
+    public ResponseContext getContext() {
+        return this.context;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PackageResponse that = (PackageResponse) o;
+
+        return context != null ? context.equals(that.context) : that.context == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return context != null ? context.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "PackageResponse{" +
+                "context=" + context +
+                '}';
+    }
+
+    public abstract static class Builder<T extends PackageResponse> {
+
+        ResponseContext context;
+
+        Builder() {
+        }
+
+        public Builder<T> context(ResponseContext context) {
+            this.context = context;
+            return this;
+        }
+
+        public abstract T build();
+    }
 }
